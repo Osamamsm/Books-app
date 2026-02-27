@@ -24,6 +24,8 @@ class _ProfileViewState extends State<ProfileView> {
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasData) {
+            print(FirebaseAuth.instance.currentUser?.uid);
+            print(snapshot);
             var userData = snapshot.data!.data() as Map<String, dynamic>;
             nameController.text = userData['Name'];
             numberController.text = userData['Phone'];
@@ -45,7 +47,8 @@ class _ProfileViewState extends State<ProfileView> {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      controller: TextEditingController(text: userData['email']),
+                      controller:
+                          TextEditingController(text: userData['email']),
                     ),
                   ),
                   const SizedBox(height: 20),
